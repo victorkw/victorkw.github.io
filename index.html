@@ -19,22 +19,34 @@
   id="scene"
 >
 
-
+          <a-assets>
+    <a-asset-item
+      id="bowser"
+      src="test.glb"
+    >
+    </a-asset-item>
+  </a-assets>
 
 
 
         <a-marker
-        preset="hiro"
+        preset="pattern" url="pattern-githubQR.patt"
         raycaster="objects: .clickable"
         emitevents="true"
         cursor="fuse: false; rayOrigin: mouse;"
         id="markerA"
       >
 
-            <a-entity id="mario"></a-entity>
-             <a-text value="Right!" ></a-text>
-            <a-text value="Left" position="-1 0 0"></a-text>
-                
+             <a-entity
+      id="bowser-model"
+      gltf-model="#bowser"
+      position="0 0 0"
+      scale="5 5 5" rotation="0 180 180" position="0 -1 0"
+      class="clickable"
+      gesture-handler
+    >
+    </a-entity>
+            <a-text value="Now Interactable" geometry="primitive:plane"></a-text>
         </a-marker>
 
         <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
