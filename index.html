@@ -27,6 +27,16 @@
     </a-asset-item>
   </a-assets>
 
+             <a-entity
+      id="bowser-model"
+      gltf-model="#bowser"
+      position="0 0 0"
+      scale="5 5 5" rotation="0 180 180" position="0 -1 0"
+      class="clickable"
+      gesture-handler
+    >
+                
+    </a-entity>
 
 
         <a-marker
@@ -36,17 +46,7 @@
         cursor="fuse: false; rayOrigin: mouse;"
         id="markerA"
       >
-
-             <a-entity
-      id="bowser-model"
-      gltf-model="#bowser"
-      position="0 0 0"
-      scale="5 5 5" rotation="0 180 180" position="0 -1 0"
-      class="clickable"
-      gesture-handler
-    >
-                 <a-text value="Now Interactable" geometry="primitive:plane"></a-text>
-    </a-entity>
+ <a-text value="Now Interactable" geometry="primitive:plane"></a-text>
             
         </a-marker>
 
