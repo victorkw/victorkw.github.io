@@ -16,6 +16,17 @@ iframe {
     width: 100vw;
 }
     </style>
+    <script>
+        // Detect Safari 
+let safariAgent = userAgentString.indexOf("Safari") > -1; 
+  
+// Discard Safari since it also matches Chrome 
+if ((chromeAgent) && (safariAgent)) safariAgent = false;
+        if (safariAgent) 
+        {
+            location.href="2.html";
+        }
+    </script>
     <body style="margin : 0px; overflow: hidden;">
 <iframe src="2.html" width="100%" height="100%" frameBorder="0"></iframe>
     </body>
