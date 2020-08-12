@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <!--<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@f4bca789d34ab7d011da8bb6d6558229842aa47b/dist/aframe-master.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <body style="margin : 0px; overflow: hidden;">
+    <a-scene embedded arjs>
+
+    <a-marker  preset="custom" type="pattern" url="pattern-arb1.patt">
+        <a-text position="0 0 0" rotation="-90 0 0" color="red" value="Centre" id="a0"></a-text>
+        <a-text position="1 0 0" rotation="-90 0 0" color="red" value="Right" id="x0"></a-text>
+        <a-text position="-1 0 0" rotation="-90 0 0" color="red" value="Left" id="l0"></a-text>
+        <a-text position="0 1 0" rotation="-90 0 0" color="red" value="Near" id="x1"></a-text>
+        <a-text position="0 -1 0" rotation="-90 0 0" color="red" value="Far" id="f1"></a-text>
+        <a-text position="0 0 -1" rotation="-90 0 0" color="red" value="Up" id="u2"></a-text>
+        <a-text position="0 0 1" rotation="-90 0 0" color="red" value="Down" id="x2"></a-text>
+         <a-text position="-0.5 1 1.8" rotation="-45 0 0" color="red" value="111x" id="a1"></a-text>
+                 <a-text position="-0.5 -1 1.8" rotation="-45 0 0" color="red" value="222" id="b1"></a-text>
+        <a-text position="0.5 -1 1" rotation="-45 0 0" color="red" value="333" id="c1"></a-text>
+           
+    </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+    </body>
+</html>
