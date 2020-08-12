@@ -8,7 +8,7 @@
     <title>AR test</title>
        
     <body style="margin : 0px; overflow: hidden;">
-    <a-scene  cursor="fuse:false; rayOrigin:mouse;" embedded arjs loading-screen="dotsColor: red; backgroundColor: black" raycaster="objects: [clickhandler]"  vr-mode-ui="enabled: false">
+    <a-scene  cursor="fuse:false; rayOrigin:mouse;" embedded arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;" loading-screen="dotsColor: red; backgroundColor: black" raycaster="objects: [clickhandler]"  vr-mode-ui="enabled: false">
 <a-assets>
     <img id="toilet" src="toilet.png">
   </a-assets>
