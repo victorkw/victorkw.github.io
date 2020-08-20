@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content=
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@f4bca789d34ab7d011da8bb6d6558229842aa47b/dist/aframe-master.min.js"></script>-->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <!--<script src="link-control.js"></script>-->
+    <title>AR test</title>
+       
+    <body style="margin : 0px; overflow: hidden;">
+    <a-scene  cursor="fuse:false; rayOrigin:mouse;" embedded arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;" loading-screen="dotsColor: red; backgroundColor: black" raycaster="objects: [clickhandler]"  vr-mode-ui="enabled: false">
+<a-assets>
+    <img id="toilet" src="toilet.png">
+     <video id="myvideo" autoplay loop="true" src="p1.mp4" webkit-playsinline playsinline></video>
+  </a-assets>
+        
+        
+    <a-marker  preset="custom" type="pattern" url="pattern-arb1.patt">
+        <a-text position="0 0 0" rotation="-90 0 0" color="red" value="Centre" id="a0"></a-text>
+        <a-video src="#myvideo" width="3" height="1.5"></a-video>
+    </a-marker>
+      <a-entity camera mouse-cursor ></a-entity>
+    </a-scene>
+        
+
+    </body>
+</html>
