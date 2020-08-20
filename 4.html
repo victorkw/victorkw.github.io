@@ -64,10 +64,12 @@
             this.vid = document.querySelector("#myvideo");
 
             marker.addEventListener('markerFound', function () {
+              alert(1);
                 this.vid.play();
             }.bind(this));
 
     marker.addEventListener('markerLost', function() {
+      alert(2);
         this.vid.pause();
         this.vid.currentTime = 0;
     }.bind(this));
