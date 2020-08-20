@@ -38,7 +38,7 @@
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
   >
     <a-assets>
-     <video id="myvideo" autoplay loop="true" src="p1.mp4" webkit-playsinline playsinline ></video>
+     <video id="myvideo" autoplay loop="true" src="p1.mp4" webkit-playsinline playsinline muted ></video>
   </a-assets>
     <!-- we use cors proxy to avoid cross-origin problems -->
     <a-nft
@@ -51,7 +51,7 @@
       smoothThreshold="5" 
     >
 
-      <a-video src="#myvideo" width="300" height="150" rotation="-90 0 0" scale="1 1 1"  position="50 50 -150" clickhandler class="clickable" mute></a-video>
+      <a-video src="#myvideo" width="300" height="150" rotation="-90 0 0" scale="1 1 1"  position="50 50 -150" clickhandler class="clickable" ></a-video>
     </a-nft>
     <a-entity camera></a-entity>
   </a-scene>
