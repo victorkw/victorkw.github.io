@@ -51,7 +51,7 @@
       smoothThreshold="5" 
     >
 
-      <a-video src="#myvideo" width="300" height="150" rotation="-90 0 0" scale="1 1 1"  position="0 0 -50" clickhandler class="clickable" onclick="javascript:alert(2)"></a-video>
+      <a-video src="#myvideo" width="300" height="150" rotation="-90 0 0" scale="1 1 1"  position="50 50 -150" clickhandler class="clickable" onclick="javascript:alert(2)"></a-video>
     </a-nft>
     <a-entity camera></a-entity>
   </a-scene>
@@ -65,12 +65,12 @@
             this.vid = document.querySelector("#myvideo");
 
             marker.addEventListener('markerFound', function () {
-              alert(1);
+              //alert(1);
                 this.vid.play();
             }.bind(this));
 
     marker.addEventListener('markerLost', function() {
-      alert(2);
+      //alert(2);
         this.vid.pause();
         this.vid.currentTime = 0;
     }.bind(this));
