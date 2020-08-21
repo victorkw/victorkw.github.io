@@ -1,101 +1,65 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
-  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-<title>TEST</title>
-    <style type="text/css">
-      #splash {
-        display: none;
+    <meta charset="utf-8">
+    <title>Hello, WebVR! • A-Frame</title>
+    <meta name="description" content="Hello, WebVR! • A-Frame">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <style>
+      .unmute {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-
-        align-items: center;
-        justify-content: center;
-        
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        cursor: pointer;
-        z-index: 999;
+        z-index: 2000;
+        right: 5px;
+        top: 5px;
       }
     </style>
-    <script>
-      document.addEventListener("DOMContentLoaded", function(event) {
-        var scene = document.querySelector("a-scene");
-        var vid = document.getElementById("video");
-        var videoShere = document.getElementById("videoShere");
-        var playButton = document.getElementById("playButton");
-
-        if (scene.hasLoaded) {
-          run();
-        } else {
-          scene.addEventListener("loaded", run);
-        }
-        
-        playButton.addEventListener('click', function() {
-          playVideo();
-        });
-
-        function run () {
-          if(AFRAME.utils.device.isMobile()) {
-            document.querySelector('#splash').style.display = 'flex';
-            document.querySelector('#splash').addEventListener('click', function () {
-              initVideo();
-              this.style.display = 'none';
-            })
-          } else {
-              initVideo();
-          }
-        }
-        
-        function initVideo () {
-          vid.play();
-          vid.pause();
-          videoShere.play();
-          videoShere.pause();
-        }
-        
-        function playVideo () {
-          vid.play();
-          videoShere.play();
-        }
-       })
-    </script>
   </head>
   <body>
-    <div id="splash">
-      <div id="start-button">Start</div>
-    </div>
-    <a-scene  vr-mode-ui="enabled: false;" cursor="fuse:false; rayOrigin:mouse;"  raycaster="objects: [clickhandler]" 
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+    <script>
+      // Or inline before the <a-scene>.
+      AFRAME.registerComponent('teste', {
+        init: function () {
+          var entity = this.el;
+          entity.addEventListener('click', () => {
+            var vid = document.querySelector('#video');
+            //vid.play().then(()=>vid.pause()); // grants full access to the video
+            //vid.muted = false;
+            vid.play();
+          });
+        }
+      });
+      
+      AFRAME.registerComponent('scene-load', {
+        init: function () {
+          var vid = document.querySelector('#video');
+          vid.play().then(()=>vid.pause()); 
+        }
+      });
+      
+      function playVideo() {
+        var vid = document.querySelector('#video');
+        vid.muted = false;
+        vid.play();
+      }
+      
+    </script>
+    <button class="unmute" onclick="playVideo();">Play Video</button>
+    <a-scene background="color: #FAFAFA" scene-load>
       <a-assets>
-          <video id="video" preload="auto" loop="true" src="p1.mp4" webkit-playsinline  playsinline muted></video>
-          <img id="buttonImg" src="https://www.pngitem.com/pimgs/m/208-2087614_green-transparent-play-button-hd-png-download.png">
+        <img id="sky" src="https://cdn.glitch.com/d3acaa82-6a9a-46f2-9b3f-d3e4c5c1a18f%2Fimage.jpg?v=1597757494979" />
+        <video id="video" muted crossorigin="anonymous" playsinline="" webkit-playsinline="" preload="metadata">
+          <source src="p1.mp4" type="video/mp4">
+        </video>
       </a-assets>
+      <a-camera id="camera-rig-inner-entity" look-controls-enabled="true" wasd-controls-enabled="false" position="0 1.6 0" camera="" rotation="" look-controls="" wasd-controls="">
+                <a-entity id="camera-cursor" cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" raycaster="far: 8;" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat">
+                </a-entity>
+            </a-camera>
+      <a-plane position="0 3 -4" color="#7BC8A4" shadow class="clickable" teste>
+        <a-video src="#video"></a-video>
+      </a-plane>
       
-      <a-nft
-      videohandler
-      type="nft"
-      url="ARDrLuk"
-      smooth="true"
-      smoothCount="10"
-      smoothTolerance=".01"
-      smoothThreshold="5" 
-    >
-      
-      <a-image id="playButton" src="#buttonImg" position="0 0 -7"></a-image>
- <a-video id="videoShere" src="#video" width="300" height="150" rotation="-90 0 0" scale="1 1 1"  position="80 40 -200" clickhandler class="clickable" ></a-video>
-      
-        </a-nft>
-    <a-entity camera></a-entity>
+      <a-sky src="#sky"></a-sky>
     </a-scene>
   </body>
 </html>
