@@ -33,7 +33,7 @@
     <div>Loading, please wait...</div>
   </div>
   
-  <button onclick="unmute()" style="z-index:9999">Sound On</button>
+  
   <a-scene
     vr-mode-ui="enabled: false;" cursor="fuse:false; rayOrigin:mouse;"  raycaster="objects: [clickhandler]" 
     renderer="logarithmicDepthBuffer: true;"
@@ -57,7 +57,10 @@
 
       <a-video src="#myvideo" width="300" height="150" rotation="-90 0 0" scale="1 1 1"  position="80 40 -200" clickhandler class="clickable" ></a-video>
     </a-nft>
-    <a-entity camera></a-entity>
+    <a-entity camera>
+    <a-entity geometry="primitive: plane; height: 0.2; width: 0.2" position="0 0 -1"
+            material="color: gray; opacity: 0.5"><button onclick="unmute()" style="z-index:9999">Sound On</button></a-entity>
+    </a-entity>
   </a-scene>
   
   <script>
