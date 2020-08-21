@@ -81,17 +81,21 @@
           <img id="buttonImg" src="https://cdn.glitch.com/a46c3f68-2f15-429d-af36-27cb89cd1d60%2Fic_play_circle_filled_black_36dp_2x.png?1518043219946">
       </a-assets>
       
-      <a-entity camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse" position="0 0 0">
-        <a-entity cursor="fuse: true; fuseTimeout: 500"
-                  position="0 0 -1"
-                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                  material="color: black; shader: flat">
-        </a-entity>
-      </a-entity>
+      <a-nft
+      videohandler
+      type="nft"
+      url="ARDrLuk"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5" 
+    >
       
       <a-image id="playButton" src="#buttonImg" position="0 0 -7"></a-image>
 
       <a-videosphere id="videoShere" loop="true" src="#video" rotation="0 -90 0"></a-videosphere>
+        </a-nft>
+    <a-entity camera></a-entity>
     </a-scene>
   </body>
 </html>
