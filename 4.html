@@ -72,8 +72,10 @@
             this.vid = document.querySelector("#myvideo");
 
             marker.addEventListener('markerFound', function () {
-              //alert(1);
+              alert("play with sound");
+              this.vid.muted=false;
                 this.vid.play();
+              
             }.bind(this));
 
     marker.addEventListener('markerLost', function() {
