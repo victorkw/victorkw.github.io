@@ -31,6 +31,8 @@
   <div class="arjs-loader">
     <div>Loading, please wait...</div>
   </div>
+  
+  <button onclick="unmute()">Sound On</button>
   <a-scene
     vr-mode-ui="enabled: false;" cursor="fuse:false; rayOrigin:mouse;"  raycaster="objects: [clickhandler]" 
     renderer="logarithmicDepthBuffer: true;"
@@ -78,6 +80,12 @@
         }
     });
 };
+    
+    function unmute()
+    {
+      var vid = document.querySelector("#myvideo");
+      vid.muted=false;
+    }
         </script>
 </body>
 </html>
