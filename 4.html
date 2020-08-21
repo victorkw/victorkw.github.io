@@ -68,7 +68,7 @@
        AFRAME.registerComponent('clickhandler', {
         init: function() {
             this.el.addEventListener('click', () => {
-                //alert('C');
+                alert('C');
                 document.querySelector("#myvideo").muted=false; 
             });
     }});
@@ -80,10 +80,10 @@
             this.vid = document.querySelector("#myvideo");
 
             marker.addEventListener('markerFound', function () {
-              if (confirm("play with sound"))
-              {
-              this.vid.muted=false;  
-              }
+             // if (confirm("play with sound"))
+              //{
+              //this.vid.muted=false;  
+              //}
               
               this.vid.play();
               
