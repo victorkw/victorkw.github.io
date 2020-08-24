@@ -103,9 +103,11 @@ catch (err)
 }
 		alert(6);
 		arController.loadNFTMarker('../resources/dataNFT/pinball', function(markerId) {
+			alert(8);
 			var markerRoot = arController.createThreeNFTMarker(markerId);
 			markerRoot.add(plane);
 			arScene.scene.add(markerRoot);
+			alert(9);
 		});
 
 alert(7);
