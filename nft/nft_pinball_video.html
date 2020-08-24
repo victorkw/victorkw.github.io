@@ -2,6 +2,7 @@
 <head>
 <title>NFT marker example with Three.js</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="stylesheet" type="text/css" href="../resources/css/nft-style.css">
 </head>
 <body>
@@ -12,14 +13,9 @@
 			🖼 Marker Image
 	</a>
 
-	<video
-	  loop
-		autoplay
-		muted
-	  playsinline
-		id="arvideo">
+	<video  loop muted playsinline webkit-playsinline id="arvideo">
 		<!-- video taken from https://github.com/hatsumatsu/lab--ar002/blob/master/video/video--01.mp4 by @hatsumatsu -->
-		<source src="../resources/data/videos/video--01.mp4" type='video/mp4'>
+		<source src="../p2.mp4" type='video/mp4'>
 	</video>
 <!--  <script src="../resources/three.min.js"></script>
   <script src="../resources/js/libs/stats.min.js"></script>
@@ -124,9 +120,6 @@ catch (err)
 		});
 		var tick = function() {
 			arScene.process();
-			rotationV += (rotationTarget - sphere.rotation.z) * 0.05;
-			sphere.rotation.z += rotationV;
-			rotationV *= 0.8;
 
 			arScene.renderOn(renderer);
 			requestAnimationFrame(tick);
