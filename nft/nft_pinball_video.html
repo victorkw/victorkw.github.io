@@ -101,11 +101,24 @@ catch (err)
 {
 	alert(err);
 }
+		
+		var sphere = new THREE.Mesh(
+			new THREE.SphereGeometry(0.5, 8, 8),
+			new THREE.MeshNormalMaterial()
+		);
+
+		sphere.material.flatShading;
+		sphere.position.z = 40;
+		sphere.position.x = 80;
+		sphere.position.y = 80;
+		sphere.scale.set(80,80,80);
+
+		
 		alert(6);
 		arController.loadNFTMarker('../resources/dataNFT/pinball', function(markerId) {
 			alert(8);
 			var markerRoot = arController.createThreeNFTMarker(markerId);
-			markerRoot.add(plane);
+			markerRoot.add(sphere);
 			arScene.scene.add(markerRoot);
 			alert(9);
 		});
