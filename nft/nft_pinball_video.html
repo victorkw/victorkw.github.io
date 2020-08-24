@@ -53,13 +53,13 @@ window.ARThreeOnLoad = function() {
 
 	ARController.getUserMediaThreeScene({maxARVideoSize: 320, cameraParam: '../resources/data/camera_para-iPhone 5 rear 640x480 1.0m.dat',
 	onSuccess: function(arScene, arController, arCamera) {
-alert(1);
+//alert(1);
 		document.body.className = arController.orientation;
 
 		var renderer = new THREE.WebGLRenderer({antialias: true});
 		renderer.gammaOutput = true;
 		renderer.gammaFactor = 2.2;
-alert(2);		
+//alert(2);		
 		if (arController.orientation === 'portrait') {
 			var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
 			var h = window.innerWidth;
@@ -73,9 +73,9 @@ alert(2);
 				document.body.className += ' desktop';
 			}
 		}
-alert(3);
+//alert(3);
 		document.body.insertBefore(renderer.domElement, document.body.firstChild);
-alert(4);
+//alert(4);
 		var rotationV = 0;
 		var rotationTarget = 0;
 
@@ -83,7 +83,7 @@ alert(4);
 			ev.preventDefault();
 			rotationTarget += 1;
 		}, false);
-alert(5);		
+//alert(5);		
 try
 {
 var ARVideo = document.getElementById( 'arvideo' );
@@ -114,17 +114,27 @@ catch (err)
 		sphere.scale.set(80,80,80);
 
 		
-		alert(6);
+		//alert(6);
 		arController.loadNFTMarker('../resources/dataNFT/pinball', function(markerId) {
-			alert(8);
+		//	alert(8);
 			var markerRoot = arController.createThreeNFTMarker(markerId);
 			markerRoot.add(sphere);
 			arScene.scene.add(markerRoot);
-			alert(9);
+		//alert(9);
 		});
-arScene.process();
-		arScene.renderOn(renderer);
-alert(7);
+		var tick = function() {
+			arScene.process();
+			rotationV += (rotationTarget - sphere.rotation.z) * 0.05;
+			sphere.rotation.z += rotationV;
+			rotationV *= 0.8;
+
+			arScene.renderOn(renderer);
+			requestAnimationFrame(tick);
+		};
+
+		tick();
+
+//alert(7);
 	}});
 
 	delete window.ARThreeOnLoad;
