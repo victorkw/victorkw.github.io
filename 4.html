@@ -36,7 +36,7 @@
   
   
   <a-scene
-    vr-mode-ui="enabled: false;" cursor="fuse:false; rayOrigin:mouse;"  raycaster="objects: [clickhandler]" 
+    vr-mode-ui="enabled: false;" cursor="fuse:false; rayOrigin:mouse;"  raycaster="objects: [link]" 
     renderer="logarithmicDepthBuffer: true;"
     embedded
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
@@ -44,6 +44,7 @@
   >
     <a-assets>
      <video id="myvideo" preload="auto" loop="true" src="p2.mp4" webkit-playsinline playsinline muted ></video>
+      <img id="speaker" crossOrigin="anonymous" src="Speaker.png">
   </a-assets>
     <!-- we use cors proxy to avoid cross-origin problems -->
     <a-nft
@@ -55,10 +56,10 @@
       smoothTolerance=".01"
       smoothThreshold="5" 
     >
-
+<a-link href="#" position="-3.5 1.5 -1.0" image="#speaker"></a-link>
       <!--<a-video src="#myvideo" width="400" height="200" rotation="-90 0 0" scale="1 1 1"  position="100 40 -400" clickhandler class="clickable" ></a-video>-->
       <a-video src="#myvideo" width="500" height="250" rotation="-90 0 0" scale="1 1 1"  position="250 -250 -300" clickhandler class="clickable" ></a-video>
-      <a-image src="Speaker.png" position="150 -200 0" rotation="-90 0 0" clickhandler class="clickable" scale="50 50 1" id="button"></a-image>
+      <!--<a-image src="Speaker.png" position="150 -200 0" rotation="-90 0 0" clickhandler class="clickable" scale="50 50 1" id="button"></a-image>-->
     </a-nft>
     <a-entity camera>
     </a-entity>
@@ -66,7 +67,7 @@
   
   <script>
     window.onload = function() {
-       AFRAME.registerComponent('clickhandler', {
+       AFRAME.registerComponent('link', {
         init: function() {
             this.el.addEventListener('click', () => {
                 //alert('C');
