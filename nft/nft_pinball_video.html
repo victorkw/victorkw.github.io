@@ -82,7 +82,8 @@ window.ARThreeOnLoad = function() {
 			ev.preventDefault();
 			rotationTarget += 1;
 		}, false);
-
+try
+{
 var ARVideo = document.getElementById( 'arvideo' );
 	var texture = new THREE.VideoTexture( ARVideo );
 	var mat = new THREE.MeshLambertMaterial({color: 0xbbbbff, map: texture});
@@ -93,7 +94,11 @@ var ARVideo = document.getElementById( 'arvideo' );
 	plane.position.x = 90;
 	plane.position.y = 90;
 	plane.scale.set(180,180,180);
-
+}
+catch (err)
+{
+	alert(err);
+}
 		arController.loadNFTMarker('../resources/dataNFT/pinball', function(markerId) {
 			var markerRoot = arController.createThreeNFTMarker(markerId);
 			markerRoot.add(plane);
