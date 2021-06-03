@@ -30,7 +30,28 @@
   }
 
 </style>
+  <script>
+  AFRAME.registerComponent('change-color-on-hover', {
+    schema: {
+      color: {default: 'red'}
+    },
 
+    init: function () {
+      var data = this.data;
+      var el = this.el;  // <a-box>
+      var defaultColor = el.getAttribute('material').color;
+
+      el.addEventListener('mouseenter', function () {
+        el.setAttribute('color', data.color);
+      });
+
+      el.addEventListener('mouseleave', function () {
+        el.setAttribute('color', defaultColor);
+      });
+    }
+  });
+</script>
+	
 <body style="margin : 0px; overflow: hidden;">
   <!-- minimal loader shown until image descriptors are loaded -->
   <div class="arjs-loader">
@@ -64,7 +85,9 @@
       <a-video src="#myvideo" width="500" height="250" rotation="-90 0 0" scale="1 1 1"  position="250 -250 -300" clickhandler class="clickable" ></a-video>
       <a-image src="Speaker.png" position="150 -200 0" rotation="-90 0 0" clickhandler class="clickable" scale="50 50 1" id="button"></a-image>
       <!--<a-link href="https://google.com" position="-1.5 0.5 0" rotation="-90 0 0" scale="25 25 1" image="#speaker" onclick="javascript:alert(1);" title="Button"></a-link>-->
-	    <a-entity link="on: click; href: https://aframe-aincraft.glitch.me">TEST</a-entity>
+	    
+	     <a-box color="#EF2D5E" position="0 1 -4" change-color-on-hover="color: blue" scale="50 50 1"></a-box>
+	    
 	    <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" component-padding="0.1" opacity="0.7" width="50" height="50" position="0 0.45 -4" rotation="0 0 0" scale="1 1 1" gui-item="" rounded="" gui-flex-container="">
       <a-gui-icon-button
 	height="50"
@@ -72,15 +95,14 @@
 	icon="f09b"
 	icon-font="https://rdub80.github.io/aframe-gui/examples/assets/fonts/fa-brands-400.ttf"
 	margin="0 0 0.05 0"
-	position="180 -200 0" rotation="-90 0 0" 
->
+	position="180 -200 0" rotation="-90 0 0" >
 </a-gui-icon-button>
 		    </a-gui-flex-container>
     </a-nft>
     <a-entity camera>
     </a-entity>
   </a-scene>
-  
+
   <script>
 	  function alertfunction()
 	  {
