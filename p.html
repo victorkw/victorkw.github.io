@@ -1,0 +1,120 @@
+<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+<style>
+  .arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
+</style>
+
+<body style="margin: 0px; overflow: hidden">
+  <!-- minimal loader shown until image descriptors are loaded -->
+  <div class="arjs-loader">
+    <div>Loading, please wait...</div>
+  </div>
+
+  <!-- html play button -->
+  <div style="position: fixed; top: 70%; width: 100%; text-align: center; z-index: 1">
+    <button onclick="playVideo()" id="pauseBtn" style="visibility: hidden">
+      <img src="pause.png" alt="" style="width: 50; height: 50" id="btnImg" />
+    </button>
+  </div>
+
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true; precision: medium;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: true;"
+  >
+    <a-assets>
+      <video id="myvideo" preload="auto" loop="true" src="p2.mp4" webkit-playsinline playsinline muted></video>
+    </a-assets>
+
+    <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
+    <a-nft
+      videohandler
+      type="nft"
+      url="ARDrLuk2"
+      smooth="true"
+      smoothCount="50"
+      smoothTolerance="0.01"
+      smoothThreshold="5"
+    >
+      <a-video
+        src="#myvideo"
+        id="arV"
+        width="500"
+        height="250"
+        rotation="-90 0 0"
+        scale="1 1 1"
+        position="250 -250 -300"
+        class="clickable"
+      ></a-video>
+    </a-nft>
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script>
+    //define play video function
+    function playVideo() {
+      this.vid = document.querySelector('#myvideo');
+      this.pause = document.querySelector('#pauseBtn');
+      this.ImgBtn = document.querySelector('#btnImg');
+      if (this.vid.paused) {
+        this.vid.play();
+        this.ImgBtn.src = 'pause.png';
+      } else {
+        this.vid.pause();
+        this.ImgBtn.src = 'playBtn.png';
+      }
+    }
+    window.onload = function () {
+      AFRAME.registerComponent('videohandler', {
+        init: function () {
+          var marker = this.el;
+
+          this.vid = document.querySelector('#myvideo');
+          this.pause = document.querySelector('#pauseBtn');
+
+          //When image detected, video will play and play button will show up
+
+          marker.addEventListener(
+            'markerFound',
+            function () {
+              this.pause.style.visibility = '';
+              this.vid.play();
+            }.bind(this)
+          );
+
+          // When image is gone, video will stop and play button will disappear
+
+          marker.addEventListener(
+            'markerLost',
+            function () {
+              this.ImgBtn = document.querySelector('#btnImg');
+              this.ImgBtn.src = 'pause.png';
+              this.pause.style.visibility = 'hidden';
+              this.vid.pause();
+              this.vid.currentTime = 0;
+            }.bind(this)
+          );
+        },
+      });
+    };
+  </script>
+</body>
